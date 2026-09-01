@@ -1,2 +1,2 @@
-# CPS 110: Computer Science 1
-Examples and Starter Code for BJU CPS 110: Computer Science I
+# CPS 110: Object Oriented Programming I
+Examples and Starter Code for BJU CPS 110: Object Oriented Programming I
