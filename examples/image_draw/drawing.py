@@ -6,6 +6,7 @@
 #
 # Documentation for the ImageDraw class is here:
 #    https://pillow.readthedocs.io/en/3.3.x/reference/ImageDraw.html
+import os
 
 from PIL import Image
 from PIL import ImageDraw
@@ -39,8 +40,12 @@ d.ellipse([(cx - 20, cy - 20), (cx + 20, cy + 20)], outline="orange")
 # Load an external image ("duck.png") into an Image object
 # Then paste it into the main image 200 pixels to the left and 100 pixels above the center
 # (When pasting, use the transparency information in the duck.png file as a "mask")
-bird = Image.open("duck.png")
-img.paste(bird, (cx - 200, cy - 100), mask=bird)
+if not os.path.exists("duck.png"):
+    # good idea to handle non-existing files gracefully instead of crashing
+    print("warning: could not open image file 'duck.png'; cannot paste duck into image...")
+else:
+    bird = Image.open("duck.png")
+    img.paste(bird, (cx - 200, cy - 100), mask=bird)
 
 # Draw some bright text above the duck's head at coordinates (cx - 200, cy - 110)
 d.text((cx - 200, cy - 110), "Quack!", fill="white")
